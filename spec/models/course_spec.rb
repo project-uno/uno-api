@@ -6,7 +6,8 @@ RSpec.describe Course, :type => :model do
 
   it { expect(course).to validate_presence_of :name } 
   it { expect(course).to belong_to(:teacher) }
-  it { expect(course).to have_many(:students).through(:enrollments)}
+  it { expect(course).to have_many(:enrolled_students).through(:enrollments)}
+  it { expect(course).to have_many(:works)}
   
   context "enrollment" do
     let(:student) { create(:student) }
@@ -18,21 +19,21 @@ RSpec.describe Course, :type => :model do
     it "enrolls the student" do
       course.enroll(student)
       expect(course.enrollments.count).to eq 1
-      expect(course.students.include?(student)).to be_truthy
+      expect(course.enrolled_students.include?(student)).to be_truthy
     end
 
     it "won't double enroll the student if already enrolled" do
       course.enroll(student)
       course.enroll(student)
       expect(course.enrollments.count).to eq 1
-      expect(course.students.include?(student)).to be_truthy
+      expect(course.enrolled_students.include?(student)).to be_truthy
     end
 
     it "unenrolls the student" do
       course.enroll(student)
       course.unenroll(student)
       expect(course.enrollments.count).to eq 0
-      expect(course.students.include?(student)).to be_falsy
+      expect(course.enrolled_students.include?(student)).to be_falsy
     end
   end
 
