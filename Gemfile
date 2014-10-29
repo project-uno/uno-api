@@ -15,17 +15,17 @@ group :test, :development do
   gem 'pry-remote'
   gem 'pry-rails'
   gem 'rails_best_practices'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
 
 end
 
 group :test do
 	gem "database_cleaner"
  	gem 'guard-rspec'
-  gem 'rspec-rails', '~> 3.0.0'
   gem 'spring-commands-rspec'
   gem 'shoulda'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
 end
 
 
