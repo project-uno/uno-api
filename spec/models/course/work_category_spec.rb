@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Course::WorkCategory, :type => :model do
+RSpec.describe Course::WorkCategory, type: :model do
 
   let(:course_work_category) { Course::WorkCategory.new }
 

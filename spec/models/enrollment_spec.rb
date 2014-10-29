@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Enrollment, :type => :model do
+RSpec.describe Enrollment, type: :model do
 
   let(:enrollment) { Enrollment.new }
 

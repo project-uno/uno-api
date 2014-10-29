@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Teacher, :type => :model do
+RSpec.describe Teacher, type: :model do
 
   let(:teacher) { Teacher.new }
   

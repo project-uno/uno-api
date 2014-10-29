@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Course::GradingSystem, :type => :model do
+RSpec.describe Course::GradingSystem, type: :model do
   
   let(:grading_system) { Course::GradingSystem.new }
 
