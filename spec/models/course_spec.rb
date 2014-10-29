@@ -8,6 +8,7 @@ RSpec.describe Course, :type => :model do
   it { expect(course).to belong_to(:teacher) }
   it { expect(course).to have_many(:enrolled_students).through(:enrollments)}
   it { expect(course).to have_many(:works)}
+  it { expect(course).to have_one(:grading_system)}
   
   context "enrollment" do
     let(:student) { create(:student) }

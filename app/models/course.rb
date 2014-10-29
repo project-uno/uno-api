@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
   has_many :enrollments
   has_many :enrolled_students, through: :enrollments, source: :student
   has_many :works, class_name: 'Course::Work'
+  has_one :grading_system
 
   def enroll(student)
     enrollments.create(course:self, student:student)

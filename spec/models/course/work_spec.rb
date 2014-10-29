@@ -6,6 +6,7 @@ RSpec.describe Course::Work, :type => :model do
 
   it { expect(course_work).to belong_to(:course) }
   it { expect(course_work).to have_many(:assigned_works)}
+  it { expect(course_work).to belong_to(:category)}
 
   it "should assign the work to students after create" do
     expect(course_work).to receive(:assign_to_students)
