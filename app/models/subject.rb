@@ -8,7 +8,7 @@ class Subject < ActiveRecord::Base
   has_many :periods
 
   def enroll(student)
-    enrollments.create(subject:self, student:student)
+    enrollments.create(student:student)
   end
 
   def unenroll(student)
