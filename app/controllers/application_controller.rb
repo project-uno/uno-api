@@ -1,3 +1,7 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
+  def wrap_in_rescue
+    yield
+  rescue ActiveRecord::RecordInvalid => error
+    render json: {error: error.to_s }, status: 400
+  end
 end
