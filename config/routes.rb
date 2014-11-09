@@ -5,4 +5,10 @@ Rails.application.routes.draw do
       post :register
     end
   end
+
+  resources :students, only: [] do
+    collection do
+      post :register
+    end
+  end
 end
