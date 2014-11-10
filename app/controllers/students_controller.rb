@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  around_action :wrap_in_rescue, only: :register
+  include UserableController
 
   def register
     registration = Registration.new(student_params)
@@ -9,6 +9,6 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.permit(:first_name, :last_name, :email)
+    user_params
   end
 end
