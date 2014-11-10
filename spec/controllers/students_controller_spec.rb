@@ -2,18 +2,20 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::StudentsController, :type => :controller do
 
-  describe 'POST api/v1/students/register' do
+  describe 'POST api/v1/students' do
     let(:student_params) do
-      {
-        first_name: 'Jose',
-        last_name: 'Rizal',
-        email: 'jose.rizal@ph.com'
+      {student:
+        {
+          first_name: 'Jose',
+          last_name: 'Rizal',
+          email: 'jose.rizal@ph.com'
+        }
       }
     end
 
     context 'when all fields are valid' do
       before do
-        post 'register', student_params
+        post 'create', student_params
       end
 
       it 'returns status 200' do
@@ -28,7 +30,7 @@ RSpec.describe Api::V1::StudentsController, :type => :controller do
 
     context 'when there are invalid fields' do
       before do
-        2.times { post 'register', student_params }
+        2.times { post 'create', student_params }
       end
 
       it 'returns status 400' do

@@ -3,7 +3,7 @@ module Api
     class TeachersController < ApplicationController
       include UserableController
 
-      def register
+      def create
         registration = Registration.new(teacher_params)
         render json: registration.create_teacher!
       end
@@ -11,7 +11,7 @@ module Api
       private
 
       def teacher_params
-        user_params
+        params.require(:teacher).permit(*user_params)
       end
     end
   end
