@@ -20,6 +20,8 @@ module ProjectUnoApi
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.autoload_paths += Dir[Rails.root.join('services', '**/')]
+
     config.middleware.insert_before "ActionDispatch::Static", "Rack::Cors" do
       allow do
         origins 'localhost:4200',
