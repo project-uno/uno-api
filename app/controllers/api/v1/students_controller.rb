@@ -5,7 +5,7 @@ module Api
 
       def create
         registration = Registration.new(student_params)
-        render json: registration.create_student!
+        render json: registration.create_student!, status: :created
       end
 
       private

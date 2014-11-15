@@ -19,7 +19,7 @@ RSpec.describe Api::V1::TeachersController, :type => :controller do
       end
 
       it 'returns status 200' do
-        expect(response.status).to eq 200
+        expect(response.status).to eq 201
       end
 
       it 'returns the newly created teacher' do
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::TeachersController, :type => :controller do
       end
 
       it 'returns status 400' do
-        expect(response.status).to eq 400
+        expect(response.status).to eq 422
       end
 
       it 'returns an error message' do
