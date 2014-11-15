@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::TeachersController, :type => :controller do
+RSpec.describe API::V1::TeachersController, :type => :controller do
 
   describe 'POST /api/v1/teachers' do
     let(:teacher_params) do

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :teachers, only: [:create]
       resources :students, only: [:create]
+      resources :subjects, only: [:show, :create , :update, :delete] 
     end
   end
 end
