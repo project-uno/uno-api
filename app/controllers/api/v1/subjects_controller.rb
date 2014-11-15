@@ -4,6 +4,9 @@ module API
 
       def show
         load_subject
+        render json: @subject, status: :ok
+      rescue ActiveRecord::RecordNotFound => error
+        render json: {error: error.to_s }, status: :not_found
       end
 
       def create
@@ -31,8 +34,6 @@ module API
 
       def load_subject
         @subject ||= Subject.find(params[:id])
-      rescue ActiveRecord::RecordNotFound => error
-        render json: error.to_s, status: :not_found
       end
 
       def build_subject

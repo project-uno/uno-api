@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Subject, :type => :model do
 
-  let(:subject) { Subject.new(name: "CS101") }
+  let(:subject) { Subject.new(name: "CS101", description: "Intro to Programming") }
 
   it { expect(subject).to validate_presence_of :name } 
+  it { expect(subject).to validate_presence_of :description }
   it { expect(subject).to belong_to(:teacher) }
   it { expect(subject).to have_many(:enrolled_students).through(:enrollments)}
   it { expect(subject).to have_many(:periods)}
