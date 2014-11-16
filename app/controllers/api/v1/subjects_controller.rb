@@ -20,10 +20,12 @@ module API
         save_subject(successful_status: :ok)
       end
 
-      def delete
+      def destroy
         load_subject
-        @teacher.destroy
+        @subject.destroy
         head :no_content
+      rescue ActiveRecord::RecordNotFound => error
+        render json: {error: error.to_s }, status: :not_found
       end
 
       private
