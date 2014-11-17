@@ -5,6 +5,8 @@ module API
       around_action :wrap_in_rescue, only: [ :create, :show, :destroy, :update]
 
       def index
+        load_sections
+        render json: @sections, status: :ok
       end
 
       def show
@@ -34,6 +36,10 @@ module API
       def section_params
         params.require(:section).permit(:name, :level)
       end
+
+      def load_sections
+        @sections ||= Section.all
+      end 
 
       def load_section
         @section ||= Section.find(params[:id])

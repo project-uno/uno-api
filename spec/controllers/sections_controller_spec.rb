@@ -4,7 +4,16 @@ RSpec.describe API::V1::SectionsController, type: :controller do
 
   let(:section) { create(:section)}
 
-  describe "GET #index"
+  describe "GET #index" do
+
+    it "returns all sections" do
+      get :index
+      expect(response).to have_http_status 200
+      body = JSON.parse(response.body)
+      expect(body.keys).to include("sections")
+    end
+
+  end
 
   describe "GET #show" do
     context "when section exists" do
