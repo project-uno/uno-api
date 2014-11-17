@@ -2,11 +2,11 @@ module API
   module V1
     class SubjectsController < ApplicationController
 
+      around_action :wrap_in_rescue, only: [ :create, :show, :destroy, :update]
+
       def show
         load_subject
         render json: @subject, status: :ok
-      rescue ActiveRecord::RecordNotFound => error
-        render json: {error: error.to_s }, status: :not_found
       end
 
       def create
@@ -24,8 +24,6 @@ module API
         load_subject
         @subject.destroy
         head :no_content
-      rescue ActiveRecord::RecordNotFound => error
-        render json: {error: error.to_s }, status: :not_found
       end
 
       private
@@ -44,11 +42,8 @@ module API
       end
 
       def save_subject(successful_status: successful_status)
-        if @subject.save
-          render json: @subject, status: successful_status
-        else
-          render json: {error: @subject.errors }, status: :unprocessable_entity
-        end
+        @subject.save!
+        render json: @subject, status: successful_status
       end
 
     end

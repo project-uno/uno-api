@@ -11,8 +11,13 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
         get :show, { id: "#{subject.id}"}
       end
 
-      it "returns the subject" do
+      it "returns ok status" do
         expect(response).to have_http_status 200
+      end
+
+      it "returns the subject" do
+        body = JSON.parse(response.body)
+        expect(body.keys).to include("subject")
       end
 
     end
