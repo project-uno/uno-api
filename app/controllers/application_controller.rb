@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   # TODO: Add authentication
 
+  protected
+
   def wrap_in_rescue
     yield
   rescue ActiveRecord::RecordInvalid => error

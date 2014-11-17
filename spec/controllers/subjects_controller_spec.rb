@@ -79,7 +79,7 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
 
   end
 
-  describe "PUT #update" do
+  describe "PATCH #update" do
 
     before do
       patch :update, id: subject.id, subject: subject_params

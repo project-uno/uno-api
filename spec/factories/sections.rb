@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :section do
-    name "MyString"
-level "MyString"
+    name "Section A"
+    level "4"
   end
 
 end
