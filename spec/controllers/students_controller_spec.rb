@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::StudentsController, :type => :controller do
+RSpec.describe API::V1::StudentsController, :type => :controller do
 
   describe 'POST api/v1/students' do
     let(:student_params) do
@@ -18,8 +18,8 @@ RSpec.describe Api::V1::StudentsController, :type => :controller do
         post 'create', student_params
       end
 
-      it 'returns status 200' do
-        expect(response.status).to eq 200
+      it 'returns status 201' do
+        expect(response.status).to eq 201
       end
 
       it 'returns the newly created student' do
@@ -33,8 +33,8 @@ RSpec.describe Api::V1::StudentsController, :type => :controller do
         2.times { post 'create', student_params }
       end
 
-      it 'returns status 400' do
-        expect(response.status).to eq 400
+      it 'returns status 422' do
+        expect(response.status).to eq 422
       end
 
       it 'returns an error message' do

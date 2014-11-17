@@ -1,6 +1,6 @@
 class Subject < ActiveRecord::Base
 
-  validates :name, presence: :true
+  validates :name, :description, presence: :true
 
   belongs_to :teacher
   has_many :enrollments

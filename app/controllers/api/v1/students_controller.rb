@@ -1,11 +1,11 @@
-module Api
+module API
   module V1
     class StudentsController < ApplicationController
       include UserableController
 
       def create
         registration = Registration.new(student_params)
-        render json: registration.create_student!
+        render json: registration.create_student!, status: :created
       end
 
       private
