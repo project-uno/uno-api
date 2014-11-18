@@ -3,7 +3,7 @@ FactoryGirl.define do
     first_name "Andres"
     last_name "Bonifacio"
     email "andres.bonie@kkk.com"
-    type "Student"
+    school_id "ABC001"
   end
 
 end
