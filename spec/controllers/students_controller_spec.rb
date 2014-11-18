@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe API::V1::StudentsController, :type => :controller do
 
-  let(:student) { create(:student)}
+  let(:student) { create(:student) }
 
   describe 'GET #show' do
 
@@ -20,7 +20,7 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
 
     context 'student does not exists' do
       before { get :show, id: "2323" }
-      it {expect(response).to have_http_status(404) }
+      it { expect(response).to have_http_status(404) }
 
       it "returns an error message" do
         body = JSON.parse(response.body)
@@ -43,7 +43,7 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
 
     context 'when all fields are valid' do
 
-      before {post 'create', student_params}
+      before { post 'create', student_params }
 
       it { expect(response.status).to eq 201 }
 
@@ -56,7 +56,7 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
     context 'when there are invalid fields' do
       before {2.times { post 'create', student_params }}
 
-      it {expect(response.status).to eq 422}
+      it { expect(response.status).to eq 422 }
 
       it 'returns an error message' do
         body = JSON.parse(response.body)
@@ -75,7 +75,7 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
 
       let(:student_params) { {school_id: 'XYZ002'} }
 
-      it {expect(response).to have_http_status 200}
+      it { expect(response).to have_http_status 200 }
 
       it "updates the resource" do
         student.reload
@@ -87,7 +87,7 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
 
       let(:student_params) { { email: '' } }
 
-      it {expect(response).to have_http_status 422}
+      it { expect(response).to have_http_status 422 }
 
       it "returns an error message" do
         body = JSON.parse(response.body)
@@ -96,6 +96,18 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
 
     end
 
+  end
+
+  describe "DELETE #delete" do
+    context "when student exists" do
+      before { delete :destroy, id: student.id }
+      it { expect(response).to have_http_status 204 }
+    end
+
+    context "when student is non-existent" do
+      before { delete :destroy, id: "22323" }
+      it { expect(response).to have_http_status 404 }
+    end
   end
 
 end
