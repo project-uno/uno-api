@@ -108,7 +108,7 @@ after "development:sections" do
 
   user_attributes.each do |attributes|
     school_id = sprintf('%05d', rand.to_s[2..6].to_i)
-    attributes.merge!(email: "inigo.sarmiento+#{school_id}@gmail.com", school_id: school_id )
+    attributes.merge!(email: "dev.project.uno@gmail.com+#{school_id}@gmail.com", school_id: school_id )
     Student.create user_attributes: attributes
   end
 
