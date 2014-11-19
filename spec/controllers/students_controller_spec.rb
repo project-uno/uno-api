@@ -4,6 +4,32 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
 
   let(:student) { create(:student) }
 
+  describe 'GET #index' do
+
+    context "when getting all students"
+
+    context "when filtered by section" do
+      let(:section) { create(:section) }
+
+      it "returns the students for the given section" do
+        student.update_attribute(:section,section)
+        get :index, section_id: "#{section.id}"
+
+        body = JSON.parse(response.body)
+        expect(body["students"]).not_to be_empty
+      end
+
+      it "returns an empty array" do
+        get :index, section_id: "#{section.id}"
+
+        body = JSON.parse(response.body)
+        expect(body["students"]).to be_empty
+      end
+
+    end
+
+  end
+
   describe 'GET #show' do
 
     context 'student exists' do

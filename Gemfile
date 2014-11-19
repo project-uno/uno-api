@@ -25,6 +25,7 @@ group :test, :development do
   gem 'shoulda'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'seedbank'
 end
 
 group :test do
