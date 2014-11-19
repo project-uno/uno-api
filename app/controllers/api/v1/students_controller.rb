@@ -3,6 +3,11 @@ module API
     class StudentsController < ApplicationController
       include UserableController
 
+      def index
+        load_students
+        render json: @students, status: :ok
+      end
+
       def show
         load_student
         render json: @student, status: :ok
@@ -33,6 +38,14 @@ module API
 
       def load_student
         @student ||= Student.find(params[:id])
+      end
+
+      def load_students
+        if params[:section_id].present?
+          @students = Section.find(params[:section_id]).students
+        else
+          @students ||= Student.all
+        end
       end
 
       def build_student

@@ -6,6 +6,6 @@ class Student < ActiveRecord::Base
   has_many :enrollments
   has_many :subjects, through: :enrollments
 
-  delegate :name, :level, to: :section, prefix: true
+  delegate :name, :level, to: :section, prefix: true, allow_nil: true
 
 end
