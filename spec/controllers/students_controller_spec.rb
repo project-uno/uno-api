@@ -27,7 +27,6 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
       end
 
     end
-
   end
 
   describe 'GET #show' do
@@ -124,7 +123,7 @@ RSpec.describe API::V1::StudentsController, :type => :controller do
 
   end
 
-  describe "DELETE #delete" do
+  describe "DELETE #destroy" do
     context "when student exists" do
       before { delete :destroy, id: student.id }
       it { expect(response).to have_http_status 204 }
