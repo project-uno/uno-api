@@ -16,13 +16,15 @@ module API
 
       def create
         build_subject
-        save_subject(successful_status: :created)
+        save_subject
+        render json: @subject, status: :created
       end
 
       def update
         load_subject
         build_subject
-        save_subject(successful_status: :ok)
+        save_subject
+        render json: @subject, status: :ok
       end
 
       def destroy
@@ -42,7 +44,7 @@ module API
       end
 
       def load_subjects
-       if params[:teacher_id].present?
+        if params[:teacher_id].present?
           @subjects = Teacher.find(params[:teacher_id]).subjects
         end
       end
@@ -52,9 +54,8 @@ module API
         @subject.attributes = subject_params
       end
 
-      def save_subject(successful_status: successful_status)
+      def save_subject
         @subject.save!
-        render json: @subject, status: successful_status
       end
 
     end

@@ -16,13 +16,15 @@ module API
 
       def create
         build_section
-        save_section(successful_status: :created)
+        save_section
+        render json: @section, status: :created
       end
 
       def update
         load_section
         build_section
-        save_section(successful_status: :ok)
+        save_section
+        render json: @section, status: :ok
       end
 
       def destroy
@@ -50,9 +52,8 @@ module API
         @section.attributes = section_params
       end
 
-      def save_section(successful_status: successful_status)
+      def save_section
         @section.save!
-        render json: @section, status: successful_status
       end
 
     end
