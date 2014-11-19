@@ -6,6 +6,7 @@ RSpec.describe Section, :type => :model do
 
   it { expect(section).to validate_presence_of(:name) }
   it { expect(section).to validate_presence_of(:level) }
+  it { expect(section).to validate_uniqueness_of(:name).scoped_to(:level) }
 
   it { expect(section).to have_many(:students) }
   it { expect(section).to have_many(:periods) }

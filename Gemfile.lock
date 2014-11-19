@@ -145,6 +145,7 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-support (3.0.4)
     ruby-progressbar (1.6.0)
+    seedbank (0.3.0)
     sexp_processor (4.4.4)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
@@ -194,6 +195,7 @@ DEPENDENCIES
   rails (= 4.1.1)
   rails_best_practices
   rspec-rails (~> 3.0.0)
+  seedbank
   shoulda
   shoulda-matchers
   spring
