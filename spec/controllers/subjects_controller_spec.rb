@@ -4,6 +4,32 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
 
   let(:subject) { create(:subject) }
 
+  describe 'GET #index' do
+
+    context "when getting all subjects"
+
+    context "when filtered by teacher" do
+      let(:teacher) { create(:teacher) }
+
+      it "returns the subjects for the given teacher" do
+        subject.update_attribute(:teacher,teacher)
+        get :index, teacher_id: "#{teacher.id}"
+
+        body = JSON.parse(response.body)
+        expect(body["subjects"]).not_to be_empty
+      end
+
+      it "returns an empty array" do
+        get :index, teacher_id: "#{teacher.id}"
+
+        body = JSON.parse(response.body)
+        expect(body["subjects"]).to be_empty
+      end
+
+    end
+  end
+
+
   describe "GET #show" do
 
     context "when resource exists" do

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :teacher do
-    teacher_id "MyString"
+    user { create(:user) } 
   end
 
 end

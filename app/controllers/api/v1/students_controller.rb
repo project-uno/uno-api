@@ -1,4 +1,4 @@
-module API
+ module API
   module V1
     class StudentsController < ApplicationController
       include UserableController
@@ -21,8 +21,9 @@ module API
       def update
         load_student
         build_student
-        save_student(successful_status: :ok)
-      end
+        save_student
+        render json: @student, status: :ok
+      end 
 
       def destroy
         load_student
@@ -53,10 +54,10 @@ module API
         @student.user.attributes = student_params
       end
 
-      def save_student(successful_status: successful_status)
+      def save_student
         @student.save!
-        render json: @student, status: successful_status
       end
+
     end
   end
 end
