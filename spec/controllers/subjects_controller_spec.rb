@@ -11,9 +11,7 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
         get :show, { id: "#{subject.id}"}
       end
 
-      it "returns ok status" do
-        expect(response).to have_http_status 200
-      end
+      it { expect(response).to have_http_status 200 }
 
       it "returns the subject" do
         body = JSON.parse(response.body)
@@ -27,9 +25,7 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
         get :show, { id: "42" }
       end
 
-      it "returns not found error" do
-        expect(response).to have_http_status 404
-      end
+      it { expect(response).to have_http_status 404 }
 
       it "contains error message" do
         body = JSON.parse(response.body)
@@ -41,18 +37,14 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
 
   describe "POST #create" do
 
-    before do
-      post :create, subject_params
-    end
+    before { post :create, subject_params }
 
     context "when fields are valid" do
       let(:subject_params) do
         {subject:{ name: 'Fil03', description: 'Noli Me Tangere'}}
       end
 
-      it "returns created status" do
-        expect(response).to have_http_status 201        
-      end
+      it { expect(response).to have_http_status 201 }
 
       it "returns the newly created subject" do
         body = JSON.parse(response.body)
@@ -66,9 +58,7 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
         {subject:{ name: '', description: 'Noli Me Tangere'}}
       end
 
-      it "returns unprocessable_entity status" do
-        expect(response).to have_http_status 422
-      end
+      it { expect(response).to have_http_status 422 }
 
       it "returns an error message" do
         body = JSON.parse(response.body)
@@ -90,9 +80,7 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
         { name: 'FIL03', description: 'Noli Me Tangere by Jose Rizal'}
       end
 
-      it "returns ok status" do
-        expect(response).to have_http_status 200
-      end
+      it { expect(response).to have_http_status 200 }
 
       it "updates the record" do
         subject.reload
@@ -102,13 +90,8 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
     end
 
     context "when a field is invalid" do
-      let(:subject_params) do
-        { name: '', description: 'El Fili'}
-      end
-
-      it "returns unprocessable_entity status" do
-        expect(response).to have_http_status 422
-      end
+      let(:subject_params) { { name: '', description: 'El Fili'} }
+      it { expect(response).to have_http_status 422 }
 
       it "returns an error message" do
         body = JSON.parse(response.body)
@@ -121,23 +104,13 @@ RSpec.describe API::V1::SubjectsController, :type => :controller do
 
   describe "DELETE #delete" do
     context "when subject exists" do
-      before do
-        delete :destroy, id: subject.id
-      end
-
-      it "returns no content" do
-        expect(response).to have_http_status 204
-      end
+      before { delete :destroy, id: subject.id }
+      it {expect(response).to have_http_status 204 }
     end
 
     context "when subject is non-existent" do
-      before do
-        delete :destroy, id: "22323"
-      end
-
-      it "returns resource not found" do
-        expect(response).to have_http_status 404
-      end
+      before { delete :destroy, id: "22323" }
+      it { expect(response).to have_http_status 404 }
     end
   end
 

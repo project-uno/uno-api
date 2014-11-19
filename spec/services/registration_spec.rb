@@ -6,7 +6,8 @@ RSpec.describe Registration do
     {
       first_name: 'Jose',
       last_name:  'Rizal',
-      email:      'jose.rizal@ph.com'
+      email:      'jose.rizal@ph.com',
+      school_id: 'ABC001'
     }
   end
 
